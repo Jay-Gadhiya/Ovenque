@@ -9,26 +9,35 @@
 
 @layer base {
   :root {
-    --background: 30 25% 98%;
-    --foreground: 30 15% 15%;
-    --card: 30 25% 96%;
-    --card-foreground: 30 15% 15%;
-    --popover: 30 25% 98%;
-    --popover-foreground: 30 15% 15%;
-    --primary: 24 95% 53%;
+    /* Dessert-inspired color palette */
+    --background: 28 20% 97%; /* Vanilla cream */
+    --foreground: 25 15% 15%; /* Dark chocolate */
+    --card: 30 25% 95%; /* Light cream */
+    --card-foreground: 25 15% 15%;
+    --popover: 28 20% 97%;
+    --popover-foreground: 25 15% 15%;
+    --primary: 25 85% 45%; /* Rich caramel */
     --primary-foreground: 0 0% 98%;
-    --secondary: 30 15% 92%;
-    --secondary-foreground: 30 15% 15%;
-    --muted: 30 15% 94%;
-    --muted-foreground: 30 10% 45%;
-    --accent: 45 96% 89%;
-    --accent-foreground: 30 15% 15%;
+    --secondary: 45 30% 88%; /* Honey beige */
+    --secondary-foreground: 25 15% 15%;
+    --muted: 35 20% 92%; /* Soft cream */
+    --muted-foreground: 25 10% 45%;
+    --accent: 320 45% 85%; /* Berry cream */
+    --accent-foreground: 25 15% 15%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 30 15% 88%;
-    --input: 30 15% 88%;
-    --ring: 24 95% 53%;
-    --radius: 0.75rem;
+    --border: 35 15% 85%; /* Light caramel */
+    --input: 35 15% 85%;
+    --ring: 25 85% 45%;
+    --radius: 1rem;
+    
+    /* Custom dessert colors */
+    --chocolate: 25 45% 25%;
+    --caramel: 35 65% 55%;
+    --vanilla: 45 35% 92%;
+    --berry: 320 45% 65%;
+    --mint: 150 35% 75%;
+    --honey: 45 85% 65%;
   }
 }
 
@@ -40,6 +49,11 @@
     @apply bg-background text-foreground;
     font-feature-settings: 'rlig' 1, 'calt' 1;
     font-family: var(--font-inter);
+    background: linear-gradient(135deg, 
+      hsl(var(--vanilla)) 0%, 
+      hsl(var(--background)) 50%, 
+      hsl(var(--accent)) 100%);
+    background-attachment: fixed;
   }
 }
 
@@ -65,117 +79,399 @@
   .font-playfair {
     font-family: var(--font-playfair);
   }
+  
+  .text-chocolate {
+    color: hsl(var(--chocolate));
+  }
+  
+  .text-caramel {
+    color: hsl(var(--caramel));
+  }
+  
+  .text-berry {
+    color: hsl(var(--berry));
+  }
+  
+  .bg-chocolate {
+    background-color: hsl(var(--chocolate));
+  }
+  
+  .bg-caramel {
+    background-color: hsl(var(--caramel));
+  }
+  
+  .bg-vanilla {
+    background-color: hsl(var(--vanilla));
+  }
+  
+  .bg-berry {
+    background-color: hsl(var(--berry));
+  }
+  
+  .bg-mint {
+    background-color: hsl(var(--mint));
+  }
+  
+  .bg-honey {
+    background-color: hsl(var(--honey));
+  }
 }
 
-/* Enhanced animations */
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes bounce-gentle {
+/* Dessert-themed animations */
+@keyframes float-gentle {
   0%, 100% {
-    transform: translateY(0);
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(-4px) rotate(-1deg);
+  }
+}
+
+@keyframes drip {
+  0% {
+    transform: translateY(-10px) scaleY(0);
+    opacity: 0;
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(0px) scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(20px) scaleY(0.8);
+    opacity: 0;
   }
 }
 
-@keyframes rotate-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes float {
+@keyframes sparkle {
   0%, 100% {
-    transform: translateY(0px);
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
   }
   50% {
-    transform: translateY(-20px);
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
   }
 }
 
-.animate-fade-in-up {
-  animation: fade-in-up 0.6s ease-out forwards;
+@keyframes melt {
+  0% {
+    border-radius: 1rem;
+    transform: scaleY(1);
+  }
+  100% {
+    border-radius: 0 0 2rem 2rem;
+    transform: scaleY(0.95);
+  }
 }
 
-.animate-fade-in {
-  animation: fade-in 0.4s ease-out forwards;
+@keyframes crumble {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05) rotate(2deg);
+  }
+  100% {
+    transform: scale(0.9) rotate(-1deg);
+    opacity: 0.8;
+  }
 }
 
-.animate-scale-in {
-  animation: scale-in 0.3s ease-out forwards;
+@keyframes sugar-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
-.animate-bounce-gentle {
-  animation: bounce-gentle 2s ease-in-out infinite;
+@keyframes chocolate-flow {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
-.animate-rotate-slow {
-  animation: rotate-slow 20s linear infinite;
+@keyframes steam-rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-50px) scale(1.5);
+    opacity: 0;
+  }
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+@keyframes ingredient-bounce {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-25px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(-5deg);
+  }
+}
+
+@keyframes oven-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 165, 0, 0.6);
+  }
+}
+
+@keyframes layer-reveal {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Animation classes */
+.animate-float-gentle {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+.animate-drip {
+  animation: drip 2s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+.animate-melt {
+  animation: melt 0.3s ease-out forwards;
+}
+
+.animate-crumble {
+  animation: crumble 0.2s ease-out;
+}
+
+.animate-sugar-fall {
+  animation: sugar-fall 8s linear infinite;
+}
+
+.animate-chocolate-flow {
+  animation: chocolate-flow 3s ease-in-out infinite;
+}
+
+.animate-steam-rise {
+  animation: steam-rise 3s ease-out infinite;
+}
+
+.animate-ingredient-bounce {
+  animation: ingredient-bounce 2s ease-in-out infinite;
+}
+
+.animate-oven-glow {
+  animation: oven-glow 2s ease-in-out infinite;
+}
+
+.animate-layer-reveal {
+  animation: layer-reveal 0.6s ease-out forwards;
 }
 
 /* Animation delays */
-.animation-delay-200 {
-  animation-delay: 200ms;
-}
+.animation-delay-100 { animation-delay: 100ms; }
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-300 { animation-delay: 300ms; }
+.animation-delay-400 { animation-delay: 400ms; }
+.animation-delay-500 { animation-delay: 500ms; }
+.animation-delay-600 { animation-delay: 600ms; }
+.animation-delay-700 { animation-delay: 700ms; }
+.animation-delay-800 { animation-delay: 800ms; }
+.animation-delay-1000 { animation-delay: 1000ms; }
 
-.animation-delay-400 {
-  animation-delay: 400ms;
-}
-
-.animation-delay-600 {
-  animation-delay: 600ms;
-}
-
+/* Dessert wonderland gradients */
 .hero-gradient {
-  background: linear-gradient(135deg, #FEF3C7 0%, #FED7AA 50%, #FDBA74 100%);
+  background: linear-gradient(135deg, 
+    hsl(var(--honey)) 0%, 
+    hsl(var(--caramel)) 25%, 
+    hsl(var(--primary)) 50%, 
+    hsl(var(--berry)) 75%, 
+    hsl(var(--chocolate)) 100%);
   position: relative;
+  overflow: hidden;
+}
+
+.hero-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  animation: sugar-fall 20s linear infinite;
 }
 
 .card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-hover::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  transition: transform 0.6s;
+}
+
+.card-hover:hover::before {
+  transform: translateX(100%) translateY(100%) rotate(45deg);
 }
 
 .card-hover:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  transform: translateY(-15px) scale(1.03);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 30px rgba(255, 165, 0, 0.2);
 }
+
+.card-hover:active {
+  animation: crumble 0.2s ease-out;
+}
+
+/* Dripping effect */
+.drip-effect {
+  position: relative;
+}
+
+.drip-effect::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 8px;
+  height: 15px;
+  background: linear-gradient(to bottom, hsl(var(--caramel)), hsl(var(--chocolate)));
+  border-radius: 0 0 50% 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.drip-effect:hover::after {
+  opacity: 1;
+  animation: drip 2s ease-in-out infinite;
+}
+
+/* Sugar crystal particles */
+.sugar-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.sugar-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: sugar-fall 8s linear infinite;
+}
+
+.sugar-particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+.sugar-particle:nth-child(2) { left: 20%; animation-delay: 1s; }
+.sugar-particle:nth-child(3) { left: 30%; animation-delay: 2s; }
+.sugar-particle:nth-child(4) { left: 40%; animation-delay: 3s; }
+.sugar-particle:nth-child(5) { left: 50%; animation-delay: 4s; }
+.sugar-particle:nth-child(6) { left: 60%; animation-delay: 5s; }
+.sugar-particle:nth-child(7) { left: 70%; animation-delay: 6s; }
+.sugar-particle:nth-child(8) { left: 80%; animation-delay: 7s; }
+.sugar-particle:nth-child(9) { left: 90%; animation-delay: 0.5s; }
+.sugar-particle:nth-child(10) { left: 15%; animation-delay: 1.5s; }
+
+/* Melting button effect */
+.btn-melt {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-melt::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-melt:hover::before {
+  left: 100%;
+}
+
+.btn-melt:hover {
+  animation: melt 0.3s ease-out forwards;
+}
+
+/* Layered dessert cross-section effect */
+.dessert-layers {
+  position: relative;
+  overflow: hidden;
+}
+
+.layer {
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.layer-1 { background: hsl(var(--chocolate)); bottom: 0; }
+.layer-2 { background: hsl(var(--caramel)); bottom: 20%; }
+.layer-3 { background: hsl(var(--vanilla)); bottom: 40%; }
+.layer-4 { background: hsl(var(--berry)); bottom: 60%; }
+.layer-5 { background: hsl(var(--mint)); bottom: 80%; }
+
+.dessert-layers:hover .layer {
+  animation: layer-reveal 0.6s ease-out forwards;
+}
+
+.dessert-layers:hover .layer-1 { animation-delay: 0.1s; }
+.dessert-layers:hover .layer-2 { animation-delay: 0.2s; }
+.dessert-layers:hover .layer-3 { animation-delay: 0.3s; }
+.dessert-layers:hover .layer-4 { animation-delay: 0.4s; }
+.dessert-layers:hover .layer-5 { animation-delay: 0.5s; }
 
 /* Smooth scrolling */
 html {
@@ -188,9 +484,12 @@ html {
   outline-offset: 2px;
 }
 
-/* Loading states */
+/* Loading shimmer with dessert colors */
 .loading-shimmer {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, 
+    hsl(var(--vanilla)) 25%, 
+    hsl(var(--honey)) 50%, 
+    hsl(var(--vanilla)) 75%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
@@ -207,10 +506,84 @@ html {
 /* Enhanced mobile responsiveness */
 @media (max-width: 640px) {
   .hero-gradient {
-    padding: 3rem 1rem;
+    padding: 2rem 1rem;
   }
   
   .card-hover:hover {
-    transform: translateY(-4px) scale(1.01);
+    transform: translateY(-8px) scale(1.02);
+  }
+  
+  .animate-float-gentle {
+    animation-duration: 6s;
   }
 }
+
+/* Parallax scrolling elements */
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Interactive recipe card styles */
+.recipe-card {
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.recipe-step {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.3s ease;
+}
+
+.recipe-card:hover .recipe-step {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.recipe-step:nth-child(1) { transition-delay: 0.1s; }
+.recipe-step:nth-child(2) { transition-delay: 0.2s; }
+.recipe-step:nth-child(3) { transition-delay: 0.3s; }
+.recipe-step:nth-child(4) { transition-delay: 0.4s; }
+
+/* Chocolate melting effect */
+.chocolate-melt {
+  position: relative;
+  overflow: hidden;
+}
+
+.chocolate-melt::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    hsl(var(--chocolate) / 0.3), 
+    transparent);
+  animation: chocolate-flow 3s ease-in-out infinite;
+}
+
+/* Steam effect */
+.steam-effect {
+  position: relative;
+}
+
+.steam {
+  position: absolute;
+  width: 3px;
+  height: 20px;
+  background: linear-gradient(to top, 
+    rgba(255, 255, 255, 0.8), 
+    transparent);
+  border-radius: 50%;
+  animation: steam-rise 3s ease-out infinite;
+}
+
+.steam:nth-child(1) { left: 20%; animation-delay: 0s; }
+.steam:nth-child(2) { left: 50%; animation-delay: 0.5s; }
+.steam:nth-child(3) { left: 80%; animation-delay: 1s; }
